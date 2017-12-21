@@ -37,6 +37,7 @@ openshift_storage_glusterfs_heketi_ssh_keyfile=/root/id_rsa
 [masters]
 master
 
+
 [nodes]
 master  openshift_schedulable=False
 node0   openshift_schedulable=True
