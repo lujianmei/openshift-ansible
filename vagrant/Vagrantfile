@@ -114,7 +114,9 @@ Vagrant.configure("2") do |config|
         # vb.customize ["storagectl", :id, "--name", "#{controller}", "--add", "sata"]
         (1..$number_of_additional_disk).each do |cn|
           file_to_disk = vm_name.to_s + '_' + 'disk' + cn.to_s + '.vdi'
-          vb.customize ['createhd', '--filename', file_to_disk, '--size', 10 * 1024]
+          unless File.exist?(file_to_disk)
+            vb.customize ['createhd', '--filename', file_to_disk, '--size', 50 * 1024]
+          end
           vb.customize ['storageattach', :id, '--storagectl', "#{controller}", '--port', cn, '--type', 'hdd', '--medium', file_to_disk]
         end
       end
