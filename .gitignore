@@ -4,6 +4,7 @@
 *.komodoproject
 .loadpath
 .project
+*.vdi
 *.pyc
 .pydevproject
 *.pyo
