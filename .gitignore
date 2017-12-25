@@ -1,6 +1,11 @@
 *~
 \#*#
 .idea/
+vagrant/.vagrant
+*.tar.gz
+*.zip
+*.tar.gz2
+
 *.komodoproject
 .loadpath
 .project
