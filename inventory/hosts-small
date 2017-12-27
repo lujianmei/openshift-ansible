@@ -1,0 +1,22 @@
+[OSEv3:children]
+masters
+nodes
+etcd
+
+[OSEv3:vars]
+ansible_ssh_user=root
+openshift_deployment_type=origin
+
+
+[masters]
+mcentos01.example.com ansible_host=192.168.1.240
+
+[nodes]
+mcentos01.example.com   ansible_host=192.168.1.240 openshift_schedulable=False
+# It is recommended to not use a single cluster for both general and registry
+# storage, so two three-node clusters will be required.
+centos01.example.com  ansible_host=192.168.1.231 openshift_schedulable=True
+centos02.example.com  ansible_host=192.168.1.232 openshift_schedulable=True
+
+[etcd]
+centos07.example.com ansible_host=192.168.1.237
