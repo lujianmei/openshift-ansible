@@ -7,12 +7,12 @@ require 'uri'
 
 Vagrant.require_version ">= 1.6.0"
 
-$num_instances = 9
+$num_instances = 3
 CLOUD_CONFIG_PATH = File.join(File.dirname(__FILE__), "user-data")
 CONFIG = File.join(File.dirname(__FILE__), "config.rb")
 
 # Defaults for config options defined in CONFIG
-$instance_name_prefix = "centos"
+$instance_name_prefix = "mcentos"
 $enable_serial_logging = false
 $share_home = false
 $vm_gui = false
@@ -25,20 +25,20 @@ $forwarded_ports = {}
 $bridge_eth0 = "eth0"
 $bridge_eth1 = "eth1"
 $mac_address = [
-  '080027F47653',
-  '080027C80CEA',
-  '080027887DE5',
-  '080027887DE6',
-  '080027887DE7',
-  '080027887DE8',
-  '080027887DE9',
-  '080027887DE1',
-  '080027887DE2',
-  '080027887DE3',
-  '080027F47654',
-   '080027F47655',
-   '080027F47656',
-   '080027F47657',
+  '080027F47753',
+  '080127C80CEA',
+  '080127887DE5',
+  '080127887DE6',
+  '080127887DE7',
+  '080127887DE8',
+  '080127887DE9',
+  '080127887DE1',
+  '080127887DE2',
+  '080127887DE3',
+  '080127F47654',
+  '081127F47655',
+  '081127F47656',
+  '081127F47657',
  
 ]
 
@@ -137,8 +137,8 @@ Vagrant.configure("2") do |config|
     #  config.vm.network "forwarded_port", guest: guest, host: host, auto_correct: true
     #end
 
-    private_ip = "172.17.8.#{i+100}"
-    public_ip = "192.168.1.#{i+230}"
+    private_ip = "172.17.8.#{i+109}"
+    public_ip = "192.168.1.#{i+239}"
     config.vm.network "private_network", ip: private_ip, :bridge => "#{$bridge_eth0}"
     config.vm.network "public_network", ip: public_ip, :bridge => "#{$bridge_eth1}", :mac => "#{$mac_address[i-1]}"
 

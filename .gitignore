@@ -2,6 +2,7 @@
 \#*#
 .idea/
 vagrant/.vagrant
+vagrant/more/.vagrant
 *.tar.gz
 *.zip
 *.tar.gz2
