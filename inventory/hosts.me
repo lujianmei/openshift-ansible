@@ -17,7 +17,7 @@
 # documentation in playbooks/openshift-glusterfs/README.md and
 # roles/openshift_storage_glusterfs/README.md for additional details.
 
-[oo_all_hosts]
+[all]
 mcentos01.example.com ansible_host=192.168.1.240
 mcentos02.example.com ansible_host=192.168.1.241
 centos01.example.com  ansible_host=192.168.1.231
@@ -39,7 +39,7 @@ glusterfs
 glusterfs_registry
 
 [OSEv3:vars]
-ansible_ssh_user=root
+ansible_ssh_user=vagrant
 openshift_deployment_type=origin
 # Specify that we want to use GlusterFS storage for a hosted registry
 openshift_hosted_registry_storage_kind=glusterfs
