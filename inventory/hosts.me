@@ -46,6 +46,10 @@ openshift_hosted_registry_storage_kind=glusterfs
 
 [masters]
 mcentos01.example.com ansible_host=192.168.1.240
+# Specify load balancer host
+[lb]
+centos07.example.com ansible_host=192.168.1.237
+
 
 [nodes]
 mcentos01.example.com   ansible_host=192.168.1.240 openshift_schedulable=False
