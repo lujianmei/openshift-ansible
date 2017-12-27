@@ -18,18 +18,17 @@
 # roles/openshift_storage_glusterfs/README.md for additional details.
 
 [all]
-config.example.com ansible_host=192.168.1.240
-master.example.com ansible_host=192.168.1.241
-node0.example.com  ansible_host=192.168.1.230
-node1.example.com  ansible_host=192.168.1.231
-node2.example.com  ansible_host=192.168.1.232
-node3.example.com  ansible_host=192.168.1.233
-node4.example.com  ansible_host=192.168.1.234
-node5.example.com  ansible_host=192.168.1.235
-etcd.example.com  ansible_host=192.168.1.236
-fs1.example.com    ansible_host=192.168.1.237
-fs1.example.com    ansible_host=192.168.1.238
-log.example.com    ansible_host=192.168.1.239
+mcentos01.example.com ansible_host=192.168.1.240
+mcentos02.example.com ansible_host=192.168.1.241
+centos01.example.com  ansible_host=192.168.1.231
+centos02.example.com  ansible_host=192.168.1.232
+centos03.example.com  ansible_host=192.168.1.233
+centos04.example.com  ansible_host=192.168.1.234
+centos05.example.com  ansible_host=192.168.1.235
+centos06.example.com  ansible_host=192.168.1.236
+centos07.example.com  ansible_host=192.168.1.237
+centos08.example.com    ansible_host=192.168.1.238
+centos09.example.com    ansible_host=192.168.1.239
 
 [OSEv3:children]
 masters
@@ -46,23 +45,22 @@ openshift_deployment_type=origin
 openshift_hosted_registry_storage_kind=glusterfs
 
 [masters]
-master.example.com ansible_host=192.168.1.241
+mcentos01.example.com ansible_host=192.168.1.240
 
 [nodes]
-master.example.com   ansible_host=192.168.1.241 openshift_schedulable=False
+mcentos01.example.com   ansible_host=192.168.1.240 openshift_schedulable=False
 # It is recommended to not use a single cluster for both general and registry
 # storage, so two three-node clusters will be required.
-node0.example.com  ansible_host=192.168.1.230 openshift_schedulable=True
-node1.example.com  ansible_host=192.168.1.231 openshift_schedulable=True
-node2.example.com  ansible_host=192.168.1.232 openshift_schedulable=True
+centos01.example.com  ansible_host=192.168.1.231 openshift_schedulable=True
+centos02.example.com  ansible_host=192.168.1.232 openshift_schedulable=True
+centos03.example.com  ansible_host=192.168.1.233 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
 # A hosted registry, by default, will only be deployed on nodes labeled
 # "region=infra".
-node3.example.com  ansible_host=192.168.1.233 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
-node4.example.com  ansible_host=192.168.1.234 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
-node5.example.com  ansible_host=192.168.1.235 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
-
+centos04.example.com  ansible_host=192.168.1.234 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
+centos05.example.com  ansible_host=192.168.1.235 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
+centos06.example.com  ansible_host=192.168.1.236 openshift_node_labels="{'region': 'infra'}" openshift_schedulable=True
 [etcd]
-etcd.example.com ansible_host=192.168.1.236
+centos07.example.com ansible_host=192.168.1.237
 
 # Specify the glusterfs group, which contains the nodes that will host
 # GlusterFS storage pods. At a minimum, each node must have a
@@ -71,11 +69,11 @@ etcd.example.com ansible_host=192.168.1.236
 # GlusterFS storage. These block devices must be bare (e.g. have no data, not)
 # be marked as LVM PVs, and will be formatted.
 [glusterfs]
-node0.example.com  ansible_host=192.168.1.230 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
-node1.example.com  ansible_host=192.168.1.231 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
-node2.example.com  ansible_host=192.168.1.232 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
+centos01.example.com  ansible_host=192.168.1.231 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
+centos02.example.com  ansible_host=192.168.1.232 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
+centos03.example.com  ansible_host=192.168.1.233 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
 
 [glusterfs_registry]
-node3.example.com ansible_host=192.168.1.233 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
-node4.example.com ansible_host=192.168.1.234 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
-node5.example.com ansible_host=192.168.1.235 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
+centos04.example.com ansible_host=192.168.1.234 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
+centos05.example.com ansible_host=192.168.1.235 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
+centos06.example.com ansible_host=192.168.1.236 glusterfs_devices='[ "/dev/vdb", "/dev/vdc", "/dev/vdd" ]'
