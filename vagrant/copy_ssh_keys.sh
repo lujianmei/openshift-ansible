@@ -5,7 +5,7 @@ max_instances=$(awk -F'=' '/^\$num_instances/{ print $2}' Vagrantfile | sed 's/ 
 
 for i in $(seq 1 $max_instances) ; do
     # echo -e "\n => core-0${i}${fqdn}"
-    echo -e "\n => core-0${i}"
+    echo -e "\n => centos0${i}.example.com"
     # ssh-keygen -f "${HOME}/.ssh/known_hosts" -R core-0${i}${fqdn}
     ssh-keygen -f "${HOME}/.ssh/known_hosts" -R core-0${i}
     expect -c "
