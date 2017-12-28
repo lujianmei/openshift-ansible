@@ -49,11 +49,25 @@ openshift_use_openshift_sdn=false
 openshift_master_api_port=3443
 openshift_master_console_port=8756
 
+openshift_hosted_etcd_storage_kind=nfs
+openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
+openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd 
+openshift_hosted_etcd_storage_volume_name=etcd-vol2 
+openshift_hosted_etcd_storage_access_modes=["ReadWriteOnce"]
+openshift_hosted_etcd_storage_volume_size=1G
+openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
+
+ansible_service_broker_image_prefix=openshift/
+ansible_service_broker_registry_url="registry.access.redhat.com"
+
 [masters]
 mcentos01.example.com openshift_ip=192.168.1.240
 # Specify load balancer host
 [lb]
 centos07.example.com openshift_ip=192.168.1.237
+
+[nfs]
+mcentos01.example.com openshift_ip=192.168.1.240
 
 
 [nodes]
